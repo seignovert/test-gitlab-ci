@@ -1,4 +1,4 @@
 Testing Gitlab external CI/CD
 ===============================
 
-Testing new commit
+Example of `python 3.6` testing with with Gitlab CI/CD.
