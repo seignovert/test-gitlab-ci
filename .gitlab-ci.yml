@@ -1,6 +1,7 @@
 image: python:3.6
 
 cache:
+  key: pip
   paths:
     - .pip
 
@@ -19,8 +20,8 @@ pytest3.6:
   stage: tests
   image: python:3.6
   script: 
-    - tox
-   
+    - ls
+
 Deploy to Pypi:
   stage: deploy
   only:
@@ -29,4 +30,4 @@ Deploy to Pypi:
     PIPY_USER: $PIPY_USER
     PIPY_PSW: $PIPY_PSW
   script:
-    - # pip sdist bdist_wheel
+    - # python setup.py sdist bdist_wheel
