@@ -1,21 +1,19 @@
 image: python:3.6
 
+stages:
+  - tests
+  - deploy
+
 cache:
-  key: "pip"
+  key: pip
   paths:
-    - .pip/
+    - .pip
 
 before_script:
   - mkdir -p .pip
   - pip install -U pip
   - pip --cache-dir=.pip install tox
 
-stages:
-  - tests
-  - deploy
-
-cache: pip
-   
 pytest3.6:
   stage: tests
   image: python:3.6
