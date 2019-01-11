@@ -23,8 +23,8 @@ py36:
     
 pypi:
   stage: deploy
-#   only:
-#     - /^(\d+\.\d+)$/
+  only:
+    - /^(v|V)?(\d+)(\.\d+)+?$/
   variables:
     TWINE_USERNAME: $PYPI_USERNAME
     TWINE_PASSWORD: $PYPI_PASSWORD
