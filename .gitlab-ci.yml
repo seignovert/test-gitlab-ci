@@ -26,9 +26,11 @@ pypi:
 #   only:
 #     - /^(\d+\.\d+)$/
   variables:
-    TWINE_USERNAME: $TWINE_USERNAME
-    TWINE_PASSWORD: $TWINE_PASSWORD
+    TWINE_USERNAME: $PYPI_USERNAME
+    TWINE_PASSWORD: $PYPI_PASSWORD
+    TWINE_REPOSITORY_URL: $PYPI_URL
   script:
-    - echo $TWINE_USERNAME
+    -  '[[ -z $TWINE_USERNAME ]] && (echo "\$PYPI_USERNAME is not set" ; exit 1)'
+    -  '[[ -z $TWINE_PASSWORD ]] && (echo "\$PYPI_PASSWORD is not set" ; exit 1)'
     - python setup.py -q sdist bdist_wheel
-    - twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+    - twine upload dist/*
