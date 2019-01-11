@@ -14,13 +14,13 @@ before_script:
   - pip install -U pip
   - pip --cache-dir=.pip install tox
 
-pytest3.6:
+py36:
   stage: tests
   image: python:3.6
   script: 
-    - ls
-
-Deploy to Pypi:
+    - tox
+    
+pypi:
   stage: deploy
   only:
     - /^(\d+\.\d+)$/
