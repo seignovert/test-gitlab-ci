@@ -29,6 +29,7 @@ pypi:
     TWINE_USERNAME: $PYPI_USERNAME
     TWINE_PASSWORD: $PYPI_PASSWORD
     TWINE_REPOSITORY_URL: $PYPI_URL
+    PBR_VERSION: $CI_COMMIT_REF_NAME
   script:
     -  '[[ -z $TWINE_USERNAME ]] && (echo "\$PYPI_USERNAME is not set" ; exit 1)'
     -  '[[ -z $TWINE_PASSWORD ]] && (echo "\$PYPI_PASSWORD is not set" ; exit 1)'
