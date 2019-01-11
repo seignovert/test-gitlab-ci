@@ -17,6 +17,7 @@ before_script:
 py36:
   stage: tests
   image: python:3.6
+  coverage: '/^TOTAL\s+\d+\s+\d+\s+(\d+\%)$/'
   script: 
     - tox
     
