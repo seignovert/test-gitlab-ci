@@ -12,7 +12,7 @@ cache:
 before_script:
   - mkdir -p .pip
   - pip install -U pip
-  - pip --cache-dir=.pip install tox
+  - pip --cache-dir=.pip --quiet install tox twine
 
 py36:
   stage: tests
@@ -22,10 +22,12 @@ py36:
     
 pypi:
   stage: deploy
-  only:
-    - /^(\d+\.\d+)$/
+#   only:
+#     - /^(\d+\.\d+)$/
   variables:
-    PIPY_USER: $PIPY_USER
-    PIPY_PSW: $PIPY_PSW
+    TWINE_USERNAME: $TWINE_USERNAME
+    TWINE_PASSWORD: $TWINE_PASSWORD
   script:
-    - echo "Deploy to pypi" # python setup.py sdist bdist_wheel
+    - echo $TWINE_USERNAME
+    - python setup.py -q sdist bdist_wheel
+    - twine upload --repository-url https://test.pypi.org/legacy/ dist/*
